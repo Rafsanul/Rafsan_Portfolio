@@ -36,14 +36,14 @@ export default function About() {
     {
       degree: "Bachelor of Science in Computer Science and Engineering",
       institution: "BRAC University",
-      period: "2017 - 2025",
+      period: "2020 - 2025",
       gpa: "CGPA: 3.3",
       icon: <FiBook />
     },
     {
       degree: "Higher Secondary School Certificate",
       institution: "Rajuk Uttara Model College",
-      period: "2015 - 2017",
+      period: "2017 - 2019",
       gpa: "GPA: 4.92 (Science)",
       icon: <FiBook />
     }
