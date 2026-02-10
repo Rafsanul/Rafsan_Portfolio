@@ -1063,7 +1063,7 @@ export default function Hero() {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <div className="text-purple-300 font-bold">PRIME IT LIMITED</div>
+                        <div className="text-purple-300 font-bold">GAO Tek Inc.</div>
                         <div className="text-gray-300 text-sm">Internship Completion Certificate</div>
                       </div>
                     </div>
