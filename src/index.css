@@ -1,0 +1,646 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide default cursor globally */
+* {
+  cursor: none !important;
+}
+
+/* Ensure cursor shows for any interactive elements that might need it */
+a:hover, button:hover, input:hover, textarea:hover {
+  cursor: none !important;
+}
+
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  font-family: 'Source Code Pro', monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  image-rendering: pixelated;
+  overflow-x: hidden;
+}
+
+/* Pixel Art Effects */
+.pixel-text {
+  text-shadow: 
+    2px 2px 0 #00aaff,
+    -1px -1px 0 #ff00aa;
+  letter-spacing: -1px;
+}
+
+.pixel-border {
+  border-style: solid;
+  border-width: 2px;
+  border-image: repeating-linear-gradient(45deg, #00aaff, #00aaff 5px, #ff00aa 5px, #ff00aa 10px) 2;
+}
+
+.pixel-icon {
+  filter: drop-shadow(2px 2px 0 #00aaff);
+}
+
+/* ALL ANIMATIONS */
+@keyframes scanLine {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes scanLineReverse {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes scanHorizontal {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes scanPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.1);
+  }
+}
+
+@keyframes dodgePulse {
+  0%, 100% {
+    transform: scaleX(1.5) translateX(0);
+  }
+  25% {
+    transform: scaleX(1.8) translateX(-5px);
+  }
+  75% {
+    transform: scaleX(1.8) translateX(5px);
+  }
+}
+
+@keyframes glitch {
+  0% { 
+    transform: translate(0); 
+    clip-path: inset(0 0 0 0);
+  }
+  20% { 
+    transform: translate(-2px, 2px); 
+    clip-path: inset(20% 0 60% 0);
+  }
+  40% { 
+    transform: translate(-2px, -2px); 
+    clip-path: inset(60% 0 20% 0);
+  }
+  60% { 
+    transform: translate(2px, 2px); 
+    clip-path: inset(40% 0 40% 0);
+  }
+  80% { 
+    transform: translate(2px, -2px); 
+    clip-path: inset(10% 0 90% 0);
+  }
+  100% { 
+    transform: translate(0); 
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-10px) translateX(5px); }
+  75% { transform: translateY(5px) translateX(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes clickRipple {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes loading-bar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s linear infinite;
+}
+
+.animate-pulse-custom {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-scan {
+  animation: scanLine 3s linear infinite;
+}
+
+.animate-scan-reverse {
+  animation: scanLineReverse 3s linear infinite;
+}
+
+.animate-scan-horizontal {
+  animation: scanHorizontal 3s linear infinite;
+}
+
+.animate-scan-pulse {
+  animation: scanPulse 2s ease-in-out infinite;
+}
+
+.animate-dodge {
+  animation: dodgePulse 0.5s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #00aaff 0%, #0088ff 25%, #0066ff 50%, #aa00ff 75%, #ff00aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00aaff, #aa00ff);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffaa, #ff00aa);
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(0, 170, 255, 0.3);
+  color: #fff;
+}
+
+/* Light Theme */
+.light {
+  --bg-primary: #f8fafc;
+  --text-primary: #0f172a;
+  --border-color: #cbd5e1;
+}
+
+.light body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.light .bg-black {
+  background-color: var(--bg-primary) !important;
+}
+
+.light .text-white {
+  color: var(--text-primary) !important;
+}
+
+.light .border-gray-800 {
+  border-color: var(--border-color) !important;
+}
+
+.light .bg-gray-900 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .text-gray-400 {
+  color: #64748b !important;
+}
+
+/* Cursor Animation Classes */
+.cursor-pulse {
+  animation: pulse 1.5s infinite;
+}
+
+.cursor-scan {
+  animation: scanHorizontal 0.8s linear infinite;
+}
+
+.cursor-ripple {
+  animation: clickRipple 0.3s ease-out;
+}
+
+.cursor-spin {
+  animation: spin 2s linear infinite;
+}
+
+/* Pixel Grid Background */
+.pixel-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 170, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 170, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Terminal Blink */
+.terminal-blink {
+  animation: blink 1s infinite;
+}
+
+/* Loading Screen Animations */
+.loading-bar-animation {
+  animation: loading-bar 2s ease-in-out;
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 170, 255, 0.2);
+}
+
+/* Text Shadow Effects */
+.text-glow {
+  text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, 0 0 30px #00aaff;
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px #aa00ff, 0 0 20px #aa00ff, 0 0 30px #aa00ff;
+}
+
+/* Border Glow */
+.border-glow {
+  box-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, inset 0 0 10px #00aaff;
+}
+
+.border-glow-purple {
+  box-shadow: 0 0 10px #aa00ff, 0 0 20px #aa00ff, inset 0 0 10px #aa00ff;
+}
+
+/* Image Filters */
+.pixel-filter {
+  filter: contrast(1.2) brightness(1.1) saturate(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pixel-text {
+    text-shadow: 
+      1px 1px 0 #00aaff,
+      -0.5px -0.5px 0 #ff00aa;
+  }
+  
+  .pixel-grid {
+    background-size: 15px 15px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  * {
+    cursor: auto !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  .gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+}
+
+/* Scan Line Container */
+.scan-line-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+/* Individual Scan Line */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  opacity: 0;
+  animation: scanLine 3s linear infinite;
+}
+
+/* Interactive Scan Line Styles */
+.scan-line-interactive {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #00aaff 20%, 
+    #00aaff 80%, 
+    transparent 100%);
+  box-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
+  z-index: 20;
+  pointer-events: none;
+  transition: all 0.1s ease;
+}
+
+.scan-line-dodging {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #ff00aa 20%, 
+    #ff00aa 80%, 
+    transparent 100%);
+  box-shadow: 0 0 20px #ff00aa, 0 0 40px #ff00aa;
+  animation: glitch 0.3s linear infinite, dodgePulse 0.5s ease-in-out infinite;
+}
+
+/* Ensure scan lines are visible */
+.scan-line-cyan {
+  color: #00aaff;
+  animation-delay: 0s;
+}
+
+.scan-line-blue {
+  color: #0088ff;
+  animation-delay: 0.5s;
+}
+
+.scan-line-purple {
+  color: #aa00ff;
+  animation-delay: 1s;
+}
+
+.scan-line-pink {
+  color: #ff00aa;
+  animation-delay: 1.5s;
+}
+
+/* Z-index ordering */
+.z-cursor {
+  z-index: 9999 !important;
+}
+
+.z-scan-line {
+  z-index: 20 !important;
+}
+
+.z-content {
+  z-index: 10 !important;
+}
+
+.z-background {
+  z-index: 0 !important;
+}
+
+/* Fix for z-index conflicts */
+.z-9999 {
+  z-index: 9999 !important;
+}
+
+.z-999 {
+  z-index: 999 !important;
+}
+
+.z-100 {
+  z-index: 100 !important;
+}
+
+.z-50 {
+  z-index: 50 !important;
+}
+
+.z-30 {
+  z-index: 30 !important;
+}
+
+.z-20 {
+  z-index: 20 !important;
+}
+
+.z-10 {
+  z-index: 10 !important;
+}
+
+/* Pixel rain cursor trail */
+.pixel-trail {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #00aaff;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Interactive element hover effects */
+.interactive-glow {
+  transition: all 0.3s ease;
+}
+
+.interactive-glow:hover {
+  box-shadow: 0 0 15px #00aaff, 0 0 30px #00aaff, inset 0 0 10px #00aaff;
+}
+
+/* Code terminal effects */
+.terminal-text {
+  font-family: 'Source Code Pro', monospace;
+  text-shadow: 0 0 5px #00ffaa;
+}
+
+/* Grid overlay for debugging */
+.debug-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Neon text effects */
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #0ff,
+    0 0 80px #0ff,
+    0 0 90px #0ff,
+    0 0 100px #0ff,
+    0 0 150px #0ff;
+}
+
+/* Cyberpunk panel effect */
+.cyber-panel {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #00aaff;
+  box-shadow: 
+    0 0 10px #00aaff,
+    inset 0 0 10px rgba(0, 170, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00aaff, transparent);
+  animation: scanHorizontal 2s linear infinite;
+}
+
+/* Loading dots animation */
+@keyframes loadingDots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+.loading-dots::after {
+  content: '...';
+  animation: loadingDots 1.5s infinite;
+}
+
+/* Data stream effect */
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 170, 255, 0.2), transparent);
+  animation: scanLine 2s linear infinite;
+}
+
+/* Connection line styles */
+.connection-line {
+  position: absolute;
+  background: linear-gradient(to bottom, #00aaff, transparent);
+  width: 2px;
+  opacity: 0.5;
+}
+
+/* Fix for any overflow issues */
+.overflow-fix {
+  overflow: hidden;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* High performance animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
